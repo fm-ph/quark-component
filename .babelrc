@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "development": {
+      "sourceMaps": "inline",
+      "plugins": [
+        "transform-runtime"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "transform-html-import-to-string"
+      ]
+    }
+  }
+}
