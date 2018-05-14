@@ -66,7 +66,7 @@ class Component {
      * Root instance.
      * @type {Component}
      */
-    this.$root = null
+    this.$root = this
 
     /**
      * DOM elements registered.
@@ -104,6 +104,7 @@ class Component {
     if (this._isRoot && this.$el && this.template) {
       this.$mount(this.$el)
     } else if (this._isRoot && this.$el) { // Otherwise, render only
+      this._callHook('init', this)
       this._render()
       this._callHook('mounted', this)
     }
@@ -175,6 +176,8 @@ class Component {
    */
   $mount (el = null, type) {
     el = (typeof el === 'string') ? document.querySelector(el) : el
+
+    this._callHook('init', this)
 
     this.$el = this._renderTemplate(el, this, {}, type)
     if (!this.$el) {
@@ -297,11 +300,6 @@ class Component {
    * @private
    */
   _render () {
-    if (this._isRoot) {
-      this._callHook('init', this)
-      this.$root = this
-    }
-
     this._parseSubComponents(false)
 
     if (this._isRoot) {
@@ -506,7 +504,8 @@ class Component {
    * @returns {HTMLElement} Rendered DOM node.
    */
   _renderTemplate (node, componentInstance, data = {}, type) {
-    if (!isObject(componentInstance.data())) {
+    const componentInstanceData = componentInstance.data()
+    if (!isObject(componentInstanceData)) {
       console.error('data() method must return an object')
       return
     }
@@ -519,7 +518,7 @@ class Component {
 
     const componentData = {
       ...data,
-      ...componentInstance.data()
+      ...componentInstanceData
     }
 
     const template = Twig.twig({ data: componentInstance.template })

@@ -27,9 +27,9 @@ describe('common attributes', () => {
     expect(rootComponent.$parent).toBeNull()
   })
 
-  it('checks component $root to be null by default', () => {
+  it('checks component $root to be equal to itself', () => {
     const rootComponent = new Component()
-    expect(rootComponent.$root).toBeNull()
+    expect(rootComponent.$root).toBe(rootComponent)
   })
 
   it('checks component $root to be equal to itself', () => {
