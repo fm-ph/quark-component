@@ -36,7 +36,7 @@
   "homepage": "https://github.com/fm-ph/quark-component",
   "license": "MIT",
   "dependencies": {
-    "quark-utils": "^1.1.0",
+    "quark-utils": "^1.2.0",
     "twig": "^1.11.0"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "documentation": "^6.3.2",
     "gh-pages": "^1.1.0",
     "jest-cli": "^22.4.3",
-    "semantic-release": "^15.4.1",
+    "semantic-release": "^15.13.24",
     "travis-deploy-once": "^5.0.0"
   },
   "browserify": {
